@@ -93,12 +93,46 @@
 
         AddDefaultCharset UTF-8
 
-        RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^example\.com$ [NC]
-        RewriteRule ^(.*)$ http://example.com$1 [R=301,L]
-
       </VirtualHost>
       ```
-    * Отключаем ненужные сайты из дериктории **/etc/apache2/mods-enabled** `a2dissite 000-default.conf`
-    * Включаем нужные сайты из дериктории **/etc/apache2/sites-available** `a2ensite example.com.conf`
-  * Запускаем Apache `/etc/init.d/apache2 start`
+      * Для редиректа добавляем строки
+        ```
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^example\.net$ [NC]
+        RewriteRule ^(.*)$ http://example.com$1 [R=301,L]
+        ```
+    * Отключаем ненужные сайты из дериктории **/etc/apache2/mods-enabled**: `a2dissite 000-default.conf`
+    * Включаем нужные сайты из дериктории **/etc/apache2/sites-available**: `a2ensite example.com.conf`
+    * Если нужно включаем модуль **Rewrite** для Apache: `a2enmod rewrite`
+  * #### Запускаем Apache `/etc/init.d/apache2 start`
+* ### PHP
+  `apt install php libapache2-mod-php`
+  * Изменяем приоритет index.php в **/etc/apache2/mods-enabled/dir.conf** (опционально):
+    ```
+    <IfModule mod_dir.c>
+      DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+    </IfModule>
+    ```
+  * #### Перезапускаем Apache `/etc/init.d/apache2 restart`
+  * Пример **index.php** для проверки:
+    ```
+    <?php
+      phpinfo();
+    ?>
+    ```
+* ### MariaDB
+  `apt install mariadb-server php-mysql`
+  * Запускаем MariaDB `/etc/init.d/mysql start`
+  * Переходим к настройке в SSH:
+    ```
+    mariadb
+
+    GRANT ALL ON *.* TO 'USERNAME'@'localhost' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+    exit
+    ```
+* ### phpmyadmin
+  `apt install phpmyadmin`
+  ###### Тут же и производится интуитивно понятная настройка
+  * #### Перезапускаем Apache `/etc/init.d/apache2 restart`
+  * phpmyadmin работает по адресу типа: `http://example.com/phpmyadmin`
