@@ -1,74 +1,66 @@
 ## Устанавливаем Debian 10
 
-* ### Дистрибутив взять можно [**здесь**](http://ndm.zyxmon.org/binaries/debian/)
+* #### Дистрибутив взять можно [**здесь**](http://ndm.zyxmon.org/binaries/debian/)
   * Форматируем накопитель в **EXT4** и подключаем к роутеру
   * Через веб-интерфейс роутера **даем общий доступ** к подключенному накопителю и **подключаемся** к нему
   * Создаем папку **install** и помещаем в нее дистрибутив формата ***.tar.gz**
- 
-* ### Входим в SSH Debian:
+  
+* #### Входим в SSH Debian:
   * Адрес по умолчанию: **192.168.1.1:222**
   * Логин: **root**
   * Пароль: **debian**
     * Меняем пароль: `passwd`
-    ```
-    Enter new UNIX password: 
-    Retype new UNIX password: 
-    passwd: password updated successfully
-    ```
     * Обновляем пакеты: `apt update`
-
-- ## Установка медиа сервера - Minidlna
+    
+## Установка медиа сервера - Minidlna
 `apt install minidlna`
 
- - #### Настраиваем Minidlna:
-Основные параметры **/etc/minidlna.conf**:
-```
-media_dir=/var/lib/minidlna
-merge_media_dirs=yes
-root_container=B
-friendly_name=Name
-```
-[Подробная информация по настройке конфига](http://itadept.ru/linux-dlna-server-minidlna/ "Подробная информация по настройке конфига")
+* #### Настраиваем Minidlna:
+  * Основные параметры **/etc/minidlna.conf**:
+    ```
+    media_dir=/var/lib/minidlna
+    merge_media_dirs=yes
+    root_container=B
+    friendly_name=Name
+    ```
+    [Подробная информация по настройке конфига](http://itadept.ru/linux-dlna-server-minidlna/ "Подробная информация по настройке конфига")
 
- - #### Запускаем Minidlna:
-`/etc/init.d/minidlna start`
-
-   - ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
-   ```
-   minidlna
-   ```
-
-------------
-- ## Установка Bittorrent клиента - Transmission
+* #### Запускаем Minidlna:
+  `/etc/init.d/minidlna start`
+  * ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
+    ```
+    minidlna
+    ```
+## Установка Bittorrent клиента - Transmission
 `apt install transmission-daemon`
 
- - #### Настраиваем Transmission:
-   - Меняем пользователя в **/etc/init.d/transmission-daemon**:
-```
-USER=root
-```
-###### Либо создаем пользователя, даем права и меняем на значение его имени
+* #### Настраиваем Transmission:
+  * Меняем пользователя в **/etc/init.d/transmission-daemon**:
+    ```
+    USER=root
+    ```
+    ###### Либо создаем пользователя, даем права и меняем на значение его имени
 
-   - Основные параметры **/etc/transmission-daemon/settings.json**:
-```
-"bind-address-ipv4": "192.168.1.1"
-"rpc-password": "password"
-"rpc-username": "username"
-"rpc-port": 9091,
-"rpc-whitelist-enabled": false,
-```
-###### Также настраивается через веб-интерфейс и Transmission Qt Client после первой инициализации
-[Подробная информация по настройке конфига](https://pcminipro.ru/os/nastrojka-transmission-daemon-settings-json/ "Подробная информация по настройке конфига")
+  * Основные параметры **/etc/transmission-daemon/settings.json**:
+    ```
+    "bind-address-ipv4": "192.168.1.1"
+    "rpc-password": "password"
+    "rpc-username": "username"
+    "rpc-port": 9091,
+    "rpc-whitelist-enabled": false,
+    ```
+    ###### Также настраивается через веб-интерфейс и Transmission Qt Client после первой инициализации
+    [Подробная информация по настройке конфига](https://pcminipro.ru/os/nastrojka-transmission-daemon-settings-json/ "Подробная информация по настройке конфига")
 
- - #### Запускаем Transmission:
-`/etc/init.d/transmission-daemon start`
+* #### Запускаем Transmission:
+  `/etc/init.d/transmission-daemon start`
 
-   - ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
-```
-transmission-daemon
-```
+  * ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
+    ```
+    transmission-daemon
+    ```
 
- - **НЕ ЗАБЫВАЕМ ПРОБРОСИТЬ ПОРТ ИЗ ПАРАМЕТРА "peer-port" ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ОТ ПИРОВ**
+* **НЕ ЗАБЫВАЕМ ПРОБРОСИТЬ ПОРТ ИЗ ПАРАМЕТРА "peer-port" ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ОТ ПИРОВ**
 
 ------------
 ## Установка Bittorrent клиента - Transmission
