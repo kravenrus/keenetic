@@ -75,7 +75,7 @@
       ```
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
-      ```
+      ```bash
       ServerName kravenrus.mykeenetic.net
 
       <VirtualHost *:80>
