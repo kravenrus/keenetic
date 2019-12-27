@@ -71,7 +71,7 @@
         Listen 443
       </IfModule>
 
-      # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+      vim: syntax=apache ts=4 sw=4 sts=4 sr noet
       ```
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
