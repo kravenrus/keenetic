@@ -75,38 +75,16 @@
       ```
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
-      ```bash
-      ServerName kravenrus.mykeenetic.net
+    ```
+    Listen 80
 
-      <VirtualHost *:80>
+    <IfModule ssl_module>
+      Listen 443
+    </IfModule>
 
-        ServerAdmin kravenrus@gmail.com
-        DocumentRoot /mnt/web
+    <IfModule mod_gnutls.c>
+      Listen 443
+    </IfModule>
 
-        #LogLevel info ssl:warn
-
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-
-        #Include conf-available/serve-cgi-bin.conf
-
-        <Directory /mnt/web/>
-          Options FollowSymLinks
-          AllowOverride All
-          Require all granted
-        </Directory>
-
-        AddDefaultCharset UTF-8
-
-        RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^kravenrus.ddns\.net$ [NC]
-        RewriteRule ^(.*)$ http://kravenrus.mykeenetic.net$1 [R=301,L]
-
-        #RewriteCond %{SERVER_NAME} =kravenrus.mykeenetic.net
-        #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
-
-      </VirtualHost>
-
-      # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
-
-      ```
+    # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+    ```
