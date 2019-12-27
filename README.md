@@ -75,63 +75,19 @@
     ```
   * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
   * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
-    ```
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-    10
-    11
-    12
-    13
-    14
-    15
-    16
-    17
-    18
-    19
-    20
-    21
-    22
-    23
-    24
-    25
-    26
-    27
-    28
-    29
-    30
-    31
-    32
-    33
-    34
-    35
-    36
-    37
-    38
-    39
-    40
-    41
-    42
-    43
-    44
-    45
-    46
-    47
-    48
-    49
-    50
-    51
-    52
-    53
-    54
-    55
-    56
-    57
-    58
-    ```
+  ```
+  # If you just change the port or add more ports here, you will likely also
+  # have to change the VirtualHost statement in
+  # /etc/apache2/sites-enabled/000-default.conf
+  Listen 80
+
+  <IfModule ssl_module>
+   Listen 443
+  </IfModule>
+
+  <IfModule mod_gnutls.c>
+   Listen 443
+  </IfModule>
+
+  # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+  ```
