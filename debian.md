@@ -60,7 +60,7 @@
   `apt install apache2`
   * #### Настраиваем Apache
     * Пример **/etc/apache2/ports.conf**:
-      ```
+      ```html
       # If you just change the port or add more ports here, you will likely also
       # have to change the VirtualHost statement in
       # /etc/apache2/sites-enabled/000-default.conf
