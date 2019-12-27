@@ -61,12 +61,6 @@
   * #### Настраиваем Apache
     * Пример **/etc/apache2/ports.conf**:
       ```
-      ### /etc/apache2/ports.conf представлен ниже
-
-      # If you just change the port or add more ports here, you will likely also
-      # have to change the VirtualHost statement in
-      # /etc/apache2/sites-enabled/000-default.conf
-
       Listen 80
 
       <IfModule ssl_module>
@@ -82,4 +76,37 @@
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
       ```
+      ServerName kravenrus.mykeenetic.net
+
+      <VirtualHost *:80>
+
+        ServerAdmin kravenrus@gmail.com
+        DocumentRoot /mnt/web
+
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        #Include conf-available/serve-cgi-bin.conf
+
+        <Directory /mnt/web/>
+          Options FollowSymLinks
+          AllowOverride All
+          Require all granted
+        </Directory>
+
+        AddDefaultCharset UTF-8
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^kravenrus.ddns\.net$ [NC]
+        RewriteRule ^(.*)$ http://kravenrus.mykeenetic.net$1 [R=301,L]
+
+        #RewriteCond %{SERVER_NAME} =kravenrus.mykeenetic.net
+        #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+      </VirtualHost>
+
+      # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
       ```
