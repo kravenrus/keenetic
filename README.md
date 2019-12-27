@@ -2,7 +2,7 @@
 * #### Дистрибутив взять можно [**здесь**](http://ndm.zyxmon.org/binaries/debian/)
   * Форматируем накопитель в **EXT4** и подключаем к роутеру
   * Через веб-интерфейс роутера **даем общий доступ** к подключенному накопителю и **подключаемся** к нему
-  * Создаем папку **install** и помещаем в нее дистрибутив формата ***.tar.gz**
+  * Создаем папку **install** и помещаем в нее дистрибутив формата **.tar.gz**
 * #### Входим в SSH Debian:
   * Адрес по умолчанию: **192.168.1.1:222**
   * Логин: **root**
@@ -62,11 +62,11 @@
     # have to change the VirtualHost statement in
     # /etc/apache2/sites-enabled/000-default.conf
     Listen 80
-    
+
     <IfModule ssl_module>
      Listen 443
     </IfModule>
-    
+
     <IfModule mod_gnutls.c>
      Listen 443
     </IfModule>
@@ -75,5 +75,48 @@
     ```
   * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
   * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
+    ```
+    ServerName kravenrus.mykeenetic.net
 
-    
+    <VirtualHost *:80>
+	    # The ServerName directive sets the request scheme, hostname and port that
+    	# the server uses to identify itself. This is used when creating
+    	# redirection URLs. In the context of virtual hosts, the ServerName
+	    # specifies what hostname must appear in the request's Host: header to
+	    # match this virtual host. For the default virtual host (this file) this
+    	# value is not decisive as it is used as a last resort host regardless.
+    	# However, you must set it for any further virtual host explicitly.
+    	#ServerName www.example.com
+
+    	ServerAdmin kravenrus@gmail.com
+	
+    	# Change the directory to your
+    	DocumentRoot /var/www/html
+
+    	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+    	# error, crit, alert, emerg.
+    	# It is also possible to configure the loglevel for particular
+    	# modules, e.g.
+    	#LogLevel info ssl:warn
+
+    	ErrorLog ${APACHE_LOG_DIR}/error.log
+    	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    	# For most configuration files from conf-available/, which are
+    	# enabled or disabled at a global level, it is possible to
+    	# include a line for only one particular virtual host. For example the
+    	# following line enables the CGI configuration for this host only
+    	# after it has been globally disabled with "a2disconf".
+    	#Include conf-available/serve-cgi-bin.conf
+	
+    	<Directory /var/www/>
+	      Options Indexes FollowSymLinks
+	    	AllowOverride All
+	    	Require all granted
+    	</Directory>
+	
+    </VirtualHost>
+
+    # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+    ```
+**dfdf**
