@@ -60,23 +60,46 @@
   `apt install apache2`
   * #### Настраиваем Apache
     * Пример **/etc/apache2/ports.conf**:
-```
-# If you just change the port or add more ports here, you will likely also
-# have to change the VirtualHost statement in
-# /etc/apache2/sites-enabled/000-default.conf
+      ```
+      Listen 80
 
-Listen 80
+      <IfModule ssl_module>
+        Listen 443
+      </IfModule>
 
-<IfModule ssl_module>
-	Listen 443
-</IfModule>
-
-<IfModule mod_gnutls.c>
-	Listen 443
-</IfModule>
-
-# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
-```
+      <IfModule mod_gnutls.c>
+        Listen 443
+      </IfModule>
+      ```
     dsdsdsds
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
+      ```
+      ServerName example.com
+
+      <VirtualHost *:80>
+
+        #ServerName example.com
+        ServerAdmin example@example.com
+        DocumentRoot /mnt/example
+
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /mnt/example/>
+          Options FollowSymLinks
+          AllowOverride All
+          Require all granted
+        </Directory>
+
+        AddDefaultCharset UTF-8
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^example\.com$ [NC]
+        RewriteRule ^(.*)$ http://example.com$1 [R=301,L]
+
+      </VirtualHost>
+
+      ```
