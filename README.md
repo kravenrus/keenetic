@@ -134,46 +134,37 @@
     56
     57
     58
-    59
-    60
-    61
-    62
-    63
-    64
-    65
-    66
-    67
-    68
-    69
-    70
-    71
-    72
-    73
-    74
-    75
-    76
-    77
-    78
-    79
-    80
-    81
-    82
-    83
-    84
-    85
-    86
-    87
-    88
-    89
-    90
-    91
-    92
-    93
-    94
-    95
-    96
-    97
-    98
-    99
-    100
+    ServerName kravenrus.mykeenetic.net
+    <VirtualHost *:80>
+    # The ServerName directive sets the request scheme, hostname and port that
+    # the server uses to identify itself. This is used when creating
+    # redirection URLs. In the context of virtual hosts, the ServerName
+    # specifies what hostname must appear in the request's Host: header to
+    # match this virtual host. For the default virtual host (this file) this
+    # value is not decisive as it is used as a last resort host regardless.
+    # However, you must set it for any further virtual host explicitly.
+    # ServerName www.example.com
+    ServerAdmin kravenrus@gmail.com
+    # Change the directory to your
+    DocumentRoot /var/www/html
+    # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+    # error, crit, alert, emerg.
+    # It is also possible to configure the loglevel for particular
+    # modules, e.g.
+    #LogLevel info ssl:warn
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    # For most configuration files from conf-available/, which are
+    # enabled or disabled at a global level, it is possible to
+    # include a line for only one particular virtual host. For example the
+    # following line enables the CGI configuration for this host only
+    # after it has been globally disabled with "a2disconf".
+    #Include conf-available/serve-cgi-bin.conf
+    <Directory /var/www/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+    </Directory>
+    </VirtualHost>
+    # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
     ```
