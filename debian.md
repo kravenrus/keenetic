@@ -62,15 +62,12 @@
     * Пример **/etc/apache2/ports.conf**:
       ```
       Listen 80
-
       <IfModule ssl_module>
         Listen 443
       </IfModule>
-
       <IfModule mod_gnutls.c>
         Listen 443
       </IfModule>
-
       vim: syntax=apache ts=4 sw=4 sts=4 sr noet
       ```
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
