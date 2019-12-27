@@ -58,10 +58,11 @@
 ## LAMP
 * ### Apache
   `apt install apache2`
-  * Пример **/etc/apache2/ports.conf**:
-    ```
-    ```
-  * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
-  * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
-    ```
-    ```
+  * Настройка
+    * Пример **/etc/apache2/ports.conf**:
+      ```
+      ```
+    * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
+    * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
+      ```
+      ```
