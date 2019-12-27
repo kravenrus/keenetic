@@ -11,7 +11,7 @@
     * Обновляем пакеты: `apt update`
     * Устанавливаем набор сетевых инструментов: `apt install net-tools`
 
-## Установка медиа сервера - Minidlna
+## Minidlna - медиа сервер
 `apt install minidlna`
 * #### Настраиваем Minidlna:
   * Основные параметры **/etc/minidlna.conf**:
@@ -28,7 +28,8 @@
       ```
       minidlna
       ```
-## Установка Bittorrent клиента - Transmission
+
+## Transmission - Bittorrent клиент
 `apt install transmission-daemon`
 * #### Настраиваем Transmission:
   * Меняем пользователя в **/etc/init.d/transmission-daemon**:
@@ -53,3 +54,14 @@
     transmission-daemon
     ```
 * **НЕ ЗАБЫВАЕМ ПРОБРОСИТЬ ПОРТ ИЗ ПАРАМЕТРА "peer-port" ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ОТ ПИРОВ**
+
+## LAMP
+* ### Apache
+  `apt install apache2`
+  * Пример **/etc/apache2/ports.conf**:
+    ```
+    ```
+  * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
+  * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
+    ```
+    ```
