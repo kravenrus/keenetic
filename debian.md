@@ -22,8 +22,7 @@
     friendly_name=Name
     ```
     [Подробная информация по настройке конфига](http://itadept.ru/linux-dlna-server-minidlna/ "Подробная информация по настройке конфига")
-  * #### Запускаем Minidlna:
-    `/etc/init.d/minidlna start`
+  * #### Запускаем Minidlna: `/etc/init.d/minidlna start`
     * ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
       ```
       minidlna
@@ -47,8 +46,7 @@
     ```
     ###### Также настраивается через веб-интерфейс и Transmission Qt Client после первой инициализации
     [Подробная информация по настройке конфига](https://pcminipro.ru/os/nastrojka-transmission-daemon-settings-json/ "Подробная информация по настройке конфига")
-* #### Запускаем Transmission:
-  `/etc/init.d/transmission-daemon start`
+* #### Запускаем Transmission: `/etc/init.d/transmission-daemon start`
   * ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
     ```
     transmission-daemon
@@ -71,7 +69,6 @@
         Listen 443
       </IfModule>
       ```
-    dsdsdsds
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
       ```
@@ -101,5 +98,7 @@
         RewriteRule ^(.*)$ http://example.com$1 [R=301,L]
 
       </VirtualHost>
-
       ```
+    * Отключаем ненужные сайты из дериктории **/etc/apache2/mods-enabled** `a2dissite 000-default.conf`
+    * Включаем нужные сайты из дериктории **/etc/apache2/sites-available** `a2ensite example.com.conf`
+  * Запускаем Apache `/etc/init.d/apache2 start`
