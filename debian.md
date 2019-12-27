@@ -61,17 +61,23 @@
   * #### Настраиваем Apache
     * Пример **/etc/apache2/ports.conf**:
       ```
-      Listen 80
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      90
+      2
 
-      <IfModule ssl_module>
-        Listen 443
-      </IfModule>
-
-      <IfModule mod_gnutls.c>
-        Listen 443
-      </IfModule>
-
-      # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+      2
+      6
+      5
+      6
+      65
       ```
     * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
     * Создаем конфиг сайта **/etc/apache2/sites-available/domain.conf**, пример содержимого:
