@@ -58,7 +58,7 @@
 ## LAMP
 * ### Apache
   `apt install apache2`
-  * Настройка
+  * #### Настройка
     * Пример **/etc/apache2/ports.conf**:
       ```
       ```
