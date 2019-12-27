@@ -136,3 +136,10 @@
   ###### Тут же и производится интуитивно понятная настройка
   * #### Перезапускаем Apache `/etc/init.d/apache2 restart`
   * phpmyadmin работает по адресу типа: `http://example.com/phpmyadmin`
+* ### SSL
+  `apt install certbot python-certbot-apache`
+    * Для получения и установки сертификатов: `certbot --apache`
+  * Только для получения сертификатов: `certbot certonly --apache`
+  * Удаление информации с серверов letsenrypt: `certbot revoke --cert-path /etc/letsencrypt/live/kravenrus.mykeenetic.net/cert.pem`
+  * Удаление сертификатов и всех символик с локального сервера: `certbot delete --cert-name kravenrus.mykeenetic.net`
+  * Обновление сертификатов: `certbot renew --dry-run` (возможно нет)
