@@ -44,7 +44,12 @@
   USER=root
   ```
   ###### Либо создать пользователя, дать права и сменить на значение его имени
-* Основные параметры **/etc/transmission-daemon/settings.json**:
+#### Запуск Transmission: `/etc/init.d/transmission-daemon start`
+* ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
+  ```
+  transmission-daemon
+  ```
+* Останавливаем службу и изменяем **/etc/transmission-daemon/settings.json**:
   ```
   "bind-address-ipv4": "192.168.1.1"
   "rpc-password": "password"
@@ -54,11 +59,7 @@
   ```
   ###### Также настраивается через веб-интерфейс и Transmission Qt Client после первой инициализации
   [Подробная информация по настройке конфига](https://pcminipro.ru/os/nastrojka-transmission-daemon-settings-json/ "Подробная информация по настройке конфига")
-#### Запуск Transmission: `/etc/init.d/transmission-daemon start`
-* ###### Для запуска службы вместе с Debian добавляем строку в конец файла chroot-services.list
-  ```
-  transmission-daemon
-  ```
+* Снова запускаем службу
 #### НЕ ЗАБЫВАЕМ ПРОБРОСИТЬ ПОРТ ИЗ ПАРАМЕТРА "peer-port" ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ОТ ПИРОВ
 
 ## LAMP
