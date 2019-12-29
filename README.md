@@ -107,6 +107,15 @@
   RewriteCond %{HTTP_HOST} ^example\.net$ [NC]
   RewriteRule ^(.*)$ http://example.com$1 [R=301,L]
   ```
+* Для включения доступа по паролю: `htpasswd .htpasswd vasya`
+  ```
+  <Directory "/var/www/example.com/admin">
+    AuthType Basic
+    AuthName "Administrative zone"
+    AuthUserFile /var/www/example.com/admin/.htpasswd
+    Require valid-user
+  </Directory>
+  ```
 #### Запустить Apache `/etc/init.d/apache2 start`
 * Перед запуском возможно понадобится:
   * Отключить ненужные сайты из дериктории **/etc/apache2/mods-enabled**: `a2dissite 000-default.conf`
