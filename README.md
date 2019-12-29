@@ -37,7 +37,7 @@ UUID="b39fe856-0d9c-d501-308f-c8560d9cd501"   /mnt/general       ext4        rw,
 UUID="737fb741-0d9c-d501-307e-b7410d9cd501"   /mnt/main          ext4        rw,auto     0        0
 UUID="feff56e0-0b9c-d501-e06b-54e00b9cd501"   /mnt/media         ext4        rw,auto     0        0
 ```
-  * ###### Для монтирования вместе с Debian добавляем строку в конец файла chroot-services.list
+* ###### Для монтирования вместе с Debian добавляем строку в конец файла chroot-services.list
     ```
     mnt
     ```
