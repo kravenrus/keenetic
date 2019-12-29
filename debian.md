@@ -60,7 +60,8 @@
 #### НЕ ЗАБЫВАЕМ ПРОБРОСИТЬ ПОРТ ИЗ ПАРАМЕТРА "peer-port" ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ОТ ПИРОВ
 
 ## LAMP
-### Apache `apt install apache2`
+### Apache
+`apt install apache2`
 #### Настройка
 * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
 * Пример **/etc/apache2/ports.conf**:
@@ -112,7 +113,8 @@
   * Включить нужные сайты из дериктории **/etc/apache2/sites-available**: `a2ensite example.com.conf`
   * Включить модуль **Rewrite** для Apache: `a2enmod rewrite` (**обязательно если настроен редирект**)
 
-### PHP `apt install php libapache2-mod-php`
+### PHP
+`apt install php libapache2-mod-php`
 #### Настройка
 * Изменяем приоритет index.php в **/etc/apache2/mods-enabled/dir.conf** (опционально):
   ```
@@ -129,7 +131,8 @@
     ?>
     ```
     
-### MariaDB `apt install mariadb-server php-mysql`
+### MariaDB
+`apt install mariadb-server php-mysql`
 #### Запускаем MariaDB `/etc/init.d/mysql start`
 #### Настройка `mariadb`
 ```
@@ -138,12 +141,14 @@ FLUSH PRIVILEGES;
 exit
 ```
 
-### phpmyadmin `apt install phpmyadmin`
+### phpmyadmin
+`apt install phpmyadmin`
 ###### Во время установки производится интуитивно понятная настройка - _читаем что выводится на экране_
 #### Перезапускаем Apache `/etc/init.d/apache2 restart`
 * phpmyadmin работает по адресу типа: `http://example.com/phpmyadmin`
 
-### SSL `apt install certbot python-certbot-apache`
+### SSL
+`apt install certbot python-certbot-apache`
 #### Команды:
 * Для получения и установки сертификатов: `certbot --apache`
 * Только для получения сертификатов: `certbot certonly --apache`
