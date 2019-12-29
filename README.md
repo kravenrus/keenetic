@@ -65,6 +65,7 @@
 ### Apache
 `apt install apache2`
 #### Настройка
+* Проверка портов: `netstat -ltup` **(должен быть установлен net-tools)**
 * Основной конфиг **/etc/apache2/apache2.conf** (можно не менять)
 * Пример **/etc/apache2/ports.conf**:
   ```
