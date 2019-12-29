@@ -19,6 +19,35 @@
   * Многофункциональный диспетчер файлов - **mc**
   * Взаимодействие с серверами по протоколам с синтаксисом URL - **curl**
 
+## Мнотирование разделов при запуске Debian
+#### Получаем список подключенных разделов `blkid`, пример вывода:
+```
+/dev/sda1: LABEL="Debian" UUID="ec5fcb86-e39c-d501-4057-cb86e39cd501" TYPE="ext4" PARTLABEL="Basic data partition" PARTUUID="86cb5f40-9ce3-01d5-a0ab-65c371ceea00"
+/dev/sda2: TYPE="swap" PARTLABEL="Basic data partition" PARTUUID="0001e3bb-3d30-9da7-e39c-d50176c70300"
+/dev/sda3: LABEL="Media" UUID="c4ffa99d-e39c-d501-c09c-a89de39cd501" TYPE="ext4" PARTLABEL="Basic data partition" PARTUUID="9da89cc0-9ce3-01d5-604e-d4ce71ceea00"
+/dev/sda4: LABEL="Web" UUID="d0fbceef-e49c-d501-80f1-ccefe49cd501" TYPE="ext4" PARTLABEL="Basic data partition" PARTUUID="efccf180-9ce4-01d5-c078-e67772ceea00"
+```
+* Заменить `<device-spec> (UUID) и <mount-point>` в **/etc/fstab**, пример:
+```
+# UNCONFIGURED FSTAB FOR BASE SYSTEM
+
+# <device-spec>                               <mount-point>      <fs-type>   <options>   <dump>   <pass>
+
+UUID="b39fe856-0d9c-d501-308f-c8560d9cd501"   /mnt/general       ext4        rw,auto     0        0
+UUID="737fb741-0d9c-d501-307e-b7410d9cd501"   /mnt/main          ext4        rw,auto     0        0
+UUID="feff56e0-0b9c-d501-e06b-54e00b9cd501"   /mnt/media         ext4        rw,auto     0        0
+```
+  * ###### Для монтирования вместе с Debian добавляем строку в конец файла chroot-services.list
+    ```
+    mnt
+    ```
+    Содержимое файла **/etc/init.d/mnt**:
+    ```
+    #!/bin/bash
+
+    mount -a
+    ```
+
 ## Minidlna - медиа сервер
 `apt install minidlna`
 #### Настройка Minidlna:
