@@ -193,8 +193,28 @@ exit
   ```
 
 ### phpmyadmin
+#### Для Debian 9 и ниже
 `apt install phpmyadmin`
 ###### Во время установки производится интуитивно понятная настройка - _читаем что выводится на экране_
+#### Для Debian 10
+`apt install wget unzip`
+
+`wget https://files.phpmyadmin.net/phpMyAdmin/5.0.0/phpMyAdmin-5.0.0-all-languages.zip`
+
+`unzip phpMyAdmin-5.0.0-all-languages.zip`
+
+`mv phpMyAdmin-5.0.0-all-languages/ /usr/share/phpmyadmin`
+
+`mkdir -p /var/lib/phpmyadmin/tmp`
+
+`chown -R www-data:www-data /var/lib/phpmyadmin`
+
+`apt install pwgen`
+
+`pwgen -s 32 1`
+
+
+
 #### Перезапускаем Apache `/etc/init.d/apache2 restart`
 * phpmyadmin работает по адресу типа: `http://example.com/phpmyadmin`
 
