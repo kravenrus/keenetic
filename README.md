@@ -198,13 +198,34 @@ exit
 `apt install phpmyadmin`
 ###### Во время установки производится интуитивно понятная настройка - _читаем что выводится на экране_
 #### Для Debian 10
-* Устанавливаем компоненты, если нет: `apt install wget unzip pwgen php-mbstring php-zip php-gd`
-* Загружаем phpmyadmin с официального ресурса: `wget https://files.phpmyadmin.net/phpMyAdmin/5.0.0/phpMyAdmin-5.0.0-all-languages.zip`
-  * Распаковываем: `unzip phpMyAdmin-5.0.0-all-languages.zip`
-  * Перемещаем: `mv phpMyAdmin-5.0.0-all-languages/ /usr/share/phpmyadmin`
-  * Создаем временный каталог: `mkdir -p /var/lib/phpmyadmin/tmp` **!!!ВОЗМОЖНО КАТАЛОГ /usr/share/phpmyadmin/tmp**
-    * Даем права: `chown -R www-data:www-data /var/lib/phpmyadmin`
-  * Создаем файл кофигурации: `cp /usr/share/phpmyadmin/config.sample.inc.php /usr/share/phpmyadmin/config.inc.php`
+* Устанавливаем компоненты, если нет
+  ```
+  apt install wget unzip pwgen php-mbstring php-zip php-gd
+  ```
+* Загружаем phpmyadmin с официального ресурса
+  ```
+  wget https://files.phpmyadmin.net/phpMyAdmin/5.0.0/phpMyAdmin-5.0.0-all-languages.zip
+  ```
+  * Распаковываем
+    ```
+    unzip phpMyAdmin-5.0.0-all-languages.zip
+    ```
+  * Перемещаем
+    ```
+    mv phpMyAdmin-5.0.0-all-languages/ /usr/share/phpmyadmin
+    ```
+  * Создаем временный каталог **!!!ВОЗМОЖНО КАТАЛОГ /usr/share/phpmyadmin/tmp**
+    ```
+    mkdir -p /var/lib/phpmyadmin/tmp
+    ```
+    * Даем права
+      ```
+      chown -R www-data:www-data /var/lib/phpmyadmin
+      ```
+  * Создаем файл кофигурации
+    ```
+    cp /usr/share/phpmyadmin/config.sample.inc.php /usr/share/phpmyadmin/config.inc.php
+    ```
     * В кавычках вставить строку из 32 символов, для генерации можно воспользоваться `pwgen -s 32 1`
       ```
       $cfg['blowfish_secret'] = '';
