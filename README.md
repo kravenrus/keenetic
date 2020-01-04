@@ -230,6 +230,10 @@ exit
       ```
       $cfg['blowfish_secret'] = '';
       ```
+    * Заменить временный каталог
+      ```
+      $cfg['TempDir'] = '/var/lib/phpmyadmin/tmp';
+      ```
 
 #### Перезапускаем Apache `/etc/init.d/apache2 restart`
 * phpmyadmin работает по адресу типа: `http://example.com/phpmyadmin`
